@@ -30,7 +30,7 @@ class _PageComprovanteState extends State<PageComprovante> {
         appBar: AppBar(
           centerTitle: true,
           backgroundColor: Colors.green[900],
-          title: Text("Agendamento Realizado!",style: TextStyle(
+          title: const Text("Agendamento Realizado!",style: TextStyle(
             color: Colors.white,
           ),),
         ),
@@ -46,85 +46,85 @@ class _PageComprovanteState extends State<PageComprovante> {
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           height: 70,
                         ),
                         //NOME
                         Flexible(
                           child: Row(
                             children: [
-                              Text(
+                              const Text(
                                 'Nome: ',
                                 style: TextStyle(color: Colors.black,fontWeight: FontWeight.w700),
                               ),
                               Text(
                                 '${widget.nome}',
-                                style: TextStyle(color: Colors.deepOrange),
+                                style: const TextStyle(color: Colors.deepOrange),
 
                               ),
                             ],
                           ),
                         ),
-                        SizedBox(height: 20,),
+                        const SizedBox(height: 20,),
                         //CPF
                         Flexible(
                           child: Row(
                             children: [
-                              Text(
+                              const Text(
                                 'CPF: ',
                                 style: TextStyle(color: Colors.black,fontWeight: FontWeight.w700),
                               ),
                               Text(
                                 '${widget.cpf}',
-                                style: TextStyle(color: Colors.deepOrange),
+                                style: const TextStyle(color: Colors.deepOrange),
                               ),
                             ],
                           ),
                         ),
-                        SizedBox(height: 20,),
+                        const SizedBox(height: 20,),
                         //WHATSAPP
                         Flexible(
                           child: Row(
                             children: [
-                              Text(
+                              const Text(
                                 'Whatsapp: ',
                                 style: TextStyle(color: Colors.black,fontWeight: FontWeight.w700),
                               ),
                               Text(
                                 '${widget.numero}',
-                                style: TextStyle(color: Colors.deepOrange),
+                                style: const TextStyle(color: Colors.deepOrange),
                               ),
                             ],
                           ),
                         ),
-                        SizedBox(height: 20,),
+                        const SizedBox(height: 20,),
                         //DOUTOR
                         Flexible(
                           child: Row(
                             children: [
-                              Text(
+                              const Text(
                                 'Doutor(a): ',
                                 style: TextStyle(color: Colors.black,fontWeight: FontWeight.w700),
                               ),
                               Text(
                                 '${widget.nome_doutor}',
-                                style: TextStyle(color: Colors.deepOrange),
+                                style: const TextStyle(color: Colors.deepOrange),
                               ),
                             ],
                           ),
                         ),
-                        SizedBox(height: 20,),
+                        const SizedBox(height: 20,),
                         //HORÁRIO
                         Flexible(
                           child: Row(
                             children: [
-                              Text(
+                              const Text(
                                 'Horário: ',
                                 style: TextStyle(color: Colors.black,fontWeight: FontWeight.w700),
                               ),
                               Text(
                                 '${widget.horario}',
-                                style: TextStyle(color: Colors.deepOrange),
+                                style: const TextStyle(color: Colors.deepOrange),
                               ),
                             ],
                           ),

@@ -48,6 +48,7 @@ class _PageAgendamentoState extends State<PageAgendamento> {
   int qt_data13 = 0;
   int qt_data14 = 0;
   int qt_data15 = 0;
+  bool dayoff = false;
   bool dr_joao_cheio = true;
   late String botao_horario;
   var dia;
@@ -104,19 +105,10 @@ class _PageAgendamentoState extends State<PageAgendamento> {
     setState(() {
       posdocumentList!.then((value) => value.docs.forEach((element) {
             print(element.data());
-            if (element['horario'] == '8H - 8:50HM') {
+            if (element['horario'] == '8:00H - 8:50HM') {
               setState(() {
                 qt_data += 1;
-                /*
-                qt_data2 += 1;
-                qt_data3 += 1;
-                qt_data4 += 1;
-                qt_data5 += 1;
-                qt_data6 += 1;
-                qt_data7 += 1;
-                qt_data8 += 1;
-                qt_data9 += 1;*/
-                // print(qt_data);
+
                 if (qt_data > 1) {}
               });
 
@@ -256,13 +248,13 @@ class _PageAgendamentoState extends State<PageAgendamento> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Informe os seus dados"),
+        title: const Text("Informe os seus dados"),
       ),
       body: Form(
         key: _formKey,
         //passando a chave que eu criei
         child: ListView(
-          padding: EdgeInsets.all(32),
+          padding: const EdgeInsets.all(32),
           children: [
             ValueListenableBuilder(
               valueListenable: dropValor,
@@ -272,7 +264,7 @@ class _PageAgendamentoState extends State<PageAgendamento> {
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(70),
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                             color: Colors.yellow,
                           )),
                     ),
@@ -299,7 +291,7 @@ class _PageAgendamentoState extends State<PageAgendamento> {
                     });
               },
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             TextFormField(
@@ -308,7 +300,7 @@ class _PageAgendamentoState extends State<PageAgendamento> {
               decoration: InputDecoration(
                   labelText: "CPF",
                   border: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.green),
+                      borderSide: const BorderSide(color: Colors.green),
                       borderRadius: BorderRadius.circular(70))),
               validator: (value) {
                 //validação através dessa função
@@ -317,7 +309,7 @@ class _PageAgendamentoState extends State<PageAgendamento> {
                 }
               },
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             TextFormField(
@@ -326,7 +318,7 @@ class _PageAgendamentoState extends State<PageAgendamento> {
               decoration: InputDecoration(
                   labelText: "NOME",
                   border: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.green),
+                      borderSide: const BorderSide(color: Colors.green),
                       borderRadius: BorderRadius.circular(70))),
               validator: (value) {
                 //validação através dessa função
@@ -335,7 +327,7 @@ class _PageAgendamentoState extends State<PageAgendamento> {
                 }
               },
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             TextFormField(
@@ -344,7 +336,7 @@ class _PageAgendamentoState extends State<PageAgendamento> {
               decoration: InputDecoration(
                   labelText: "NÚMERO DE WHATSAPP",
                   border: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.green),
+                      borderSide: const BorderSide(color: Colors.green),
                       borderRadius: BorderRadius.circular(70))),
               validator: (value) {
                 //validação através dessa função
@@ -354,42 +346,20 @@ class _PageAgendamentoState extends State<PageAgendamento> {
               },
             ),
 
-/*
-            DateTimeField(
-              format: formatdata,
-              controller: controllerDATA,
-              decoration: InputDecoration(labelText: "DATA E HORARIO"),
-              onShowPicker: (context, currentValue) async {
-                final date = await showDatePicker(
-                    context: context,
-                    firstDate: DateTime(2022),
-                    initialDate: currentValue ?? DateTime.now(),
-                    lastDate: DateTime(2100));
-                if (date != null) {
-                  final time = await showTimePicker(
-                    context: context,
-                    initialTime:
-                    TimeOfDay.fromDateTime(currentValue ?? DateTime.now()),
-                  );
-                  return DateTimeField.combine(date, time);
-                } else {
-                  return currentValue;
-                }
-              },
-            ),
-*/
-            SizedBox(
+
+
+            const SizedBox(
               height: 10,
             ),
 
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             DateTimeField(
               decoration: InputDecoration(
                   labelText: "DATA",
                   border: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.green),
+                      borderSide: const BorderSide(color: Colors.green),
                       borderRadius: BorderRadius.circular(70))),
               format: formatdata,
               controller: controllerDATA,
@@ -397,14 +367,7 @@ class _PageAgendamentoState extends State<PageAgendamento> {
                 setState(() {
                   userNametxt = controllerDATA.text;
                   dia = textEntered!.weekday;
-                  print('dia: $dia');
-                  print(controllerDATA.text);
-                  teste += 1;
-                  print(teste);
-                  print(tipo_atendimento);
 
-                  //print('datetime(dr_joaocheio): ${dr_joao_cheio}');
-                  // print('visivel: ${visivel}');
                 });
                 initProcura(controllerDATA.text);
               },
@@ -416,78 +379,13 @@ class _PageAgendamentoState extends State<PageAgendamento> {
                     lastDate: DateTime(2100));
               },
             ),
-            /*
-            DateTimeField(
-              controller: controllerHORARIO,
-              format: formathorario,
-              decoration: InputDecoration(labelText: "Horário"),
-              onShowPicker: (context, currentValue) async {
-                final time = await showTimePicker(
-                  context: context,
-                  initialTime:
-                  TimeOfDay.fromDateTime(currentValue ?? DateTime.now()),
-                );
-                return DateTimeField.convert(time);
-              },
-            ),
-*/
+
             const SizedBox(
               height: 20,
             ),
 
-/*
-            Visibility(
-              visible: tipo_atendimento == 'Manutenção',
-              maintainState: true,
-              maintainSize: true,
-              maintainAnimation: true,
-              child: ListView.builder(
-                  scrollDirection: Axis.vertical,
-                  shrinkWrap: true,
-                  itemCount: horarios.length,
-                  itemBuilder: (contex, index) {
-                   // final horario = horarios[index];
-                    return Card(
-                      child: Flex(
-                        direction: Axis.horizontal,
-                        children: [
-                          Expanded(
-                            child: ListTile(
-                              title: Text('8H às 8:50HM'),
-                              onTap: (){
-                              },
-                              enabled: data1habilitado(),
 
-                              /*
-                              trailing: SizedBox(
-                                width: 50,
-                                child: Row(
-                                  children: [
-                                    IconButton(
-                                        onPressed: () {
-                                          if (qt_data > 0) {
-                                            print('eeçiiiii');
-                                            return null;
-                                          } else {
-                                            print(qt_data);
-                                            print('oooooooiiiiiiiiiiii');
-                                            botao_horario = '8H às 8:50HM';
-                                          }
-                                        },
-                                        icon: const Icon(
-                                          Icons.add,
-                                          color: Colors.green,
-                                        ))
-                                  ],
-                                ),
-                              ),*/
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  }),
-            ),*/
+
             //VISIBILIDADE MANUTENÇÂO
             Visibility(
               maintainState: true,
@@ -509,70 +407,70 @@ class _PageAgendamentoState extends State<PageAgendamento> {
                                 child: Column(
                                   children: [
                                     ListTile(
-                                      title: Text('8:00H - 8:30HM'),
+                                      title: const Text('8:00H - 8:30HM'),
                                       onTap: () {
                                         botao_horario = '8:00H - 8:30HM';
                                       },
                                       enabled: data4disponivel(),
                                     ),
                                     ListTile(
-                                      title: Text('8:30HM - 9:00H'),
+                                      title: const Text('8:30HM - 9:00H'),
                                       onTap: () {
                                         botao_horario = '8:30HM - 9:00H';
                                       },
                                       enabled: data5disponivel(),
                                     ),
                                     ListTile(
-                                      title: Text('9:00H - 9:30HM'),
+                                      title: const Text('9:00H - 9:30HM'),
                                       onTap: () {
                                         botao_horario = '9:00H - 9:30HM';
                                       },
                                       enabled: data6disponivel(),
                                     ),
                                     ListTile(
-                                      title: Text('9:30HM - 10:00H'),
+                                      title: const Text('9:30HM - 10:00H'),
                                       onTap: () {
                                         botao_horario = '9:30HM - 10:00H';
                                       },
                                       enabled: data7disponivel(),
                                     ),
                                     ListTile(
-                                      title: Text('10:00H - 10:30HM'),
+                                      title: const Text('10:00H - 10:30HM'),
                                       enabled: data8disponivel(),
                                       onTap: () {
                                         botao_horario = '10:00H - 10:30HM';
                                       },
                                     ),
                                     ListTile(
-                                      title: Text('10:30HM - 11:00H'),
+                                      title: const Text('10:30HM - 11:00H'),
                                       onTap: () {
                                         botao_horario = '10:30HM - 11:00H';
                                       },
                                       enabled: data9disponivel(),
                                     ),
                                     ListTile(
-                                      title: Text('14:00H - 14:30HM'),
+                                      title: const Text('14:00H - 14:30HM'),
                                       onTap: () {
                                         botao_horario = '14:00H - 14:30HM';
                                       },
                                       enabled: data12disponivel(),
                                     ),
                                     ListTile(
-                                      title: Text('14:30HM - 15:00H'),
+                                      title: const Text('14:30HM - 15:00H'),
                                       onTap: () {
                                         botao_horario = '14:30HM - 15:00H';
                                       },
                                       enabled: data13disponivel(),
                                     ),
                                     ListTile(
-                                      title: Text('15:00H - 15:30HM'),
+                                      title: const Text('15:00H - 15:30HM'),
                                       onTap: () {
                                         botao_horario = '15:00H - 15:30HM';
                                       },
                                       enabled: data14disponivel(),
                                     ),
                                     ListTile(
-                                      title: Text('15:30HM - 16:00H'),
+                                      title: const Text('15:30HM - 16:00H'),
                                       onTap: () {
                                         botao_horario = '15:30HM - 16:00H';
                                       },
@@ -612,35 +510,35 @@ class _PageAgendamentoState extends State<PageAgendamento> {
                                 child: Column(
                                   children: [
                                     ListTile(
-                                      title: Text('8:00H - 8:50HM'),
+                                      title: const Text('8:00H - 8:50HM'),
                                       onTap: () {
                                         botao_horario = '8:00H - 8:50HM';
                                       },
                                       enabled: datadisponivel(),
                                     ),
                                     ListTile(
-                                      title: Text('8:50HM - 9:40HM'),
+                                      title: const Text('8:50HM - 9:40HM'),
                                       onTap: () {
                                         botao_horario = '8:50HM - 9:40HM';
                                       },
                                       enabled: data2disponivel(),
                                     ),
                                     ListTile(
-                                      title: Text('9:40HM - 10:30HM'),
+                                      title: const Text('9:40HM - 10:30HM'),
                                       onTap: () {
                                         botao_horario = '9:40HM - 10:30HM';
                                       },
                                       enabled: data3disponivel(),
                                     ),
                                     ListTile(
-                                      title: Text('14:00H - 14:50HM'),
+                                      title: const Text('14:00H - 14:50HM'),
                                       onTap: () {
                                         botao_horario = '14:00H - 14:50HM';
                                       },
                                       enabled: data10disponivel(),
                                     ),
                                     ListTile(
-                                      title: Text('14:50HM - 15:40HM'),
+                                      title: const Text('14:50HM - 15:40HM'),
                                       enabled: data11disponivel(),
                                       onTap: () {
                                         botao_horario = '14:50HM - 15:40HM';
@@ -684,10 +582,10 @@ class _PageAgendamentoState extends State<PageAgendamento> {
                           )));
                 }
               },
-              child: Text("CONFIRMAR AGENDAMENTO"),
               style: ElevatedButton.styleFrom(
-                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 60),
+                padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 60),
               ),
+              child: const Text("CONFIRMAR AGENDAMENTO"),
             )
           ],
         ),
@@ -703,7 +601,7 @@ class _PageAgendamentoState extends State<PageAgendamento> {
         dia == 2 ||
         dia == 4 ||
         qt_data4 > 0 ||
-        qt_data5 > 0) {
+        qt_data5 > 0 && offatendimento()==true) {
       return false;
     } else {
       return true;
@@ -718,7 +616,7 @@ class _PageAgendamentoState extends State<PageAgendamento> {
         dia == 2 ||
         dia == 4 ||
         qt_data6 > 0 ||
-        qt_data7 > 0) {
+        qt_data7 > 0&& offatendimento()==true) {
       return false;
     } else {
       return true;
@@ -733,7 +631,7 @@ class _PageAgendamentoState extends State<PageAgendamento> {
         dia == 2 ||
         dia == 4 ||
         qt_data7 > 0 ||
-        qt_data8 > 0) {
+        qt_data8 > 0&& offatendimento()==true) {
       return false;
     } else {
       return true;
@@ -747,7 +645,7 @@ class _PageAgendamentoState extends State<PageAgendamento> {
         dia == 7 ||
         dia == 2 ||
         dia == 4 ||
-        qt_data > 0) {
+        qt_data > 0&& offatendimento()==true) {
       return false;
     } else {
       return true;
@@ -761,7 +659,7 @@ class _PageAgendamentoState extends State<PageAgendamento> {
         dia == 7 ||
         dia == 2 ||
         dia == 4 ||
-        qt_data > 0) {
+        qt_data > 0&& offatendimento()==true) {
       return false;
     } else {
       return true;
@@ -775,7 +673,7 @@ class _PageAgendamentoState extends State<PageAgendamento> {
         dia == 7 ||
         dia == 2 ||
         dia == 4 ||
-        qt_data2 > 0) {
+        qt_data2 > 0&& offatendimento()==true) {
       return false;
     } else {
       return true;
@@ -789,7 +687,7 @@ class _PageAgendamentoState extends State<PageAgendamento> {
         dia == 7 ||
         dia == 2 ||
         dia == 4 ||
-        qt_data2 > 0) {
+        qt_data2 > 0&& offatendimento()==true) {
       return false;
     } else {
       return true;
@@ -803,7 +701,7 @@ class _PageAgendamentoState extends State<PageAgendamento> {
         dia == 7 ||
         dia == 2 ||
         dia == 4 ||
-        qt_data3 > 0) {
+        qt_data3 > 0&& offatendimento()==true) {
       return false;
     } else {
       return true;
@@ -812,7 +710,7 @@ class _PageAgendamentoState extends State<PageAgendamento> {
 
 //10:30HM - 11:00H
   bool data9disponivel() {
-    if (qt_data9 > 0 || teste == 0 || dia == 7 || dia == 2 || dia == 4) {
+    if (qt_data9 > 0 || teste == 0 || dia == 7 || dia == 2 || dia == 4&& offatendimento()==true) {
       return false;
     } else {
       return true;
@@ -827,7 +725,7 @@ class _PageAgendamentoState extends State<PageAgendamento> {
         dia == 5 ||
         dia == 6 ||
         qt_data12 > 0 ||
-        qt_data13 > 0) {
+        qt_data13 > 0&& offatendimento()==true) {
       return false;
     } else {
       return true;
@@ -841,7 +739,7 @@ class _PageAgendamentoState extends State<PageAgendamento> {
         dia == 7 ||
         dia == 5 ||
         dia == 6 ||
-        qt_data14 > 0) {
+        qt_data14 > 0&& offatendimento()==true) {
       return false;
     } else {
       return true;
@@ -855,7 +753,7 @@ class _PageAgendamentoState extends State<PageAgendamento> {
         dia == 6 ||
         teste == 0 ||
         dia == 7 ||
-        qt_data10 > 0) {
+        qt_data10 > 0&& offatendimento()==true) {
       return false;
     } else {
       return true;
@@ -869,7 +767,7 @@ class _PageAgendamentoState extends State<PageAgendamento> {
         dia == 6 ||
         teste == 0 ||
         dia == 7 ||
-        qt_data10 > 0) {
+        qt_data10 > 0&& offatendimento()==true) {
       return false;
     } else {
       return true;
@@ -883,7 +781,7 @@ class _PageAgendamentoState extends State<PageAgendamento> {
         dia == 6 ||
         teste == 0 ||
         dia == 7 ||
-        qt_data11 > 0) {
+        qt_data11 > 0&& offatendimento()==true) {
       return false;
     } else {
       return true;
@@ -892,10 +790,18 @@ class _PageAgendamentoState extends State<PageAgendamento> {
 
 //15:30HM - 16:00H
   bool data15disponivel() {
-    if (qt_data15 > 0 || dia == 5 || dia == 6 || teste == 0 || dia == 7) {
+    if (qt_data15 > 0 || dia == 5 || dia == 6 || teste == 0 || dia == 7&& offatendimento()==true) {
       return false;
     } else {
       return true;
+    }
+  }
+  //Dia off
+   bool offatendimento(){
+    if(controllerDATA.text=='1-10-2022'||controllerDATA.text=='3-10-2022'){
+      return true;
+    }else{
+      return false;
     }
   }
 
@@ -937,12 +843,6 @@ class User {
     required this.age,
     required this.data,
   });
-/*
-  verificarHorarios(){
-    FutureBuilder<QuerySnapshot>(future: posdocu, builder: (context, snapshot){
 
-    });
-  }
-*/
 
 }

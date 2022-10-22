@@ -20,7 +20,7 @@ class _PaginaInicialState extends State<PaginaInicial> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Agendamento de consulta'),
+        title: const Text('Agendamento de consulta'),
 
       ),
       body: ValueListenableBuilder(
@@ -35,10 +35,10 @@ class _PaginaInicialState extends State<PaginaInicial> {
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(6),
-                        borderSide: BorderSide(color: Colors.deepPurpleAccent,)
+                        borderSide: const BorderSide(color: Colors.deepPurpleAccent,)
                       ),
                     ),
-                    icon: Icon(Icons.accessibility_outlined),
+                    icon: const Icon(Icons.accessibility_outlined),
                     hint: const Text('Selecione o Doutor(a)'),
                     value: (value.isEmpty) ? null : value,
                     onChanged: (escolha) {
