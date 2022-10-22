@@ -10,6 +10,7 @@ class PageAgendamento extends StatefulWidget {
   PageAgendamento({Key? key, required this.nome_doutor}) : super(key: key);
 
   late String nome_doutor;
+  late  bool dayoff ;
 
   @override
   State<PageAgendamento> createState() => _PageAgendamentoState();
@@ -367,6 +368,9 @@ class _PageAgendamentoState extends State<PageAgendamento> {
                 setState(() {
                   userNametxt = controllerDATA.text;
                   dia = textEntered!.weekday;
+                  teste += 1;
+                  print(controllerDATA.text);
+                  print(dayoff);
 
                 });
                 initProcura(controllerDATA.text);
@@ -592,6 +596,15 @@ class _PageAgendamentoState extends State<PageAgendamento> {
       ),
     );
   }
+  bool offatendimento(){
+    if('01-10-2022'==controllerDATA.text||'03-10-2022'==controllerDATA.text){
+      dayoff = true;
+      return true;
+    }else{
+      dayoff = false;
+      return false;
+    }
+  }
 
   //8:00H - 8:50HM
   bool datadisponivel() {
@@ -601,7 +614,7 @@ class _PageAgendamentoState extends State<PageAgendamento> {
         dia == 2 ||
         dia == 4 ||
         qt_data4 > 0 ||
-        qt_data5 > 0 && offatendimento()==true) {
+        qt_data5 > 0||offatendimento()==true ) {
       return false;
     } else {
       return true;
@@ -616,7 +629,7 @@ class _PageAgendamentoState extends State<PageAgendamento> {
         dia == 2 ||
         dia == 4 ||
         qt_data6 > 0 ||
-        qt_data7 > 0&& offatendimento()==true) {
+        qt_data7 > 0||offatendimento()==true) {
       return false;
     } else {
       return true;
@@ -631,7 +644,7 @@ class _PageAgendamentoState extends State<PageAgendamento> {
         dia == 2 ||
         dia == 4 ||
         qt_data7 > 0 ||
-        qt_data8 > 0&& offatendimento()==true) {
+        qt_data8 > 0||offatendimento()==true) {
       return false;
     } else {
       return true;
@@ -645,7 +658,7 @@ class _PageAgendamentoState extends State<PageAgendamento> {
         dia == 7 ||
         dia == 2 ||
         dia == 4 ||
-        qt_data > 0&& offatendimento()==true) {
+        qt_data > 0||offatendimento()==true) {
       return false;
     } else {
       return true;
@@ -659,7 +672,7 @@ class _PageAgendamentoState extends State<PageAgendamento> {
         dia == 7 ||
         dia == 2 ||
         dia == 4 ||
-        qt_data > 0&& offatendimento()==true) {
+        qt_data > 0||offatendimento()==true) {
       return false;
     } else {
       return true;
@@ -673,7 +686,7 @@ class _PageAgendamentoState extends State<PageAgendamento> {
         dia == 7 ||
         dia == 2 ||
         dia == 4 ||
-        qt_data2 > 0&& offatendimento()==true) {
+        qt_data2 > 0||offatendimento()==true) {
       return false;
     } else {
       return true;
@@ -687,7 +700,7 @@ class _PageAgendamentoState extends State<PageAgendamento> {
         dia == 7 ||
         dia == 2 ||
         dia == 4 ||
-        qt_data2 > 0&& offatendimento()==true) {
+        qt_data2 > 0||offatendimento()==true) {
       return false;
     } else {
       return true;
@@ -701,7 +714,7 @@ class _PageAgendamentoState extends State<PageAgendamento> {
         dia == 7 ||
         dia == 2 ||
         dia == 4 ||
-        qt_data3 > 0&& offatendimento()==true) {
+        qt_data3 > 0||offatendimento()==true) {
       return false;
     } else {
       return true;
@@ -710,7 +723,7 @@ class _PageAgendamentoState extends State<PageAgendamento> {
 
 //10:30HM - 11:00H
   bool data9disponivel() {
-    if (qt_data9 > 0 || teste == 0 || dia == 7 || dia == 2 || dia == 4&& offatendimento()==true) {
+    if (qt_data9 > 0 || teste == 0 || dia == 7 || dia == 2 || dia == 4 ||offatendimento()==true) {
       return false;
     } else {
       return true;
@@ -725,7 +738,7 @@ class _PageAgendamentoState extends State<PageAgendamento> {
         dia == 5 ||
         dia == 6 ||
         qt_data12 > 0 ||
-        qt_data13 > 0&& offatendimento()==true) {
+        qt_data13 > 0||offatendimento()==true) {
       return false;
     } else {
       return true;
@@ -739,7 +752,7 @@ class _PageAgendamentoState extends State<PageAgendamento> {
         dia == 7 ||
         dia == 5 ||
         dia == 6 ||
-        qt_data14 > 0&& offatendimento()==true) {
+        qt_data14 > 0||offatendimento()==true) {
       return false;
     } else {
       return true;
@@ -753,7 +766,7 @@ class _PageAgendamentoState extends State<PageAgendamento> {
         dia == 6 ||
         teste == 0 ||
         dia == 7 ||
-        qt_data10 > 0&& offatendimento()==true) {
+        qt_data10 > 0 ||offatendimento()==true) {
       return false;
     } else {
       return true;
@@ -767,7 +780,7 @@ class _PageAgendamentoState extends State<PageAgendamento> {
         dia == 6 ||
         teste == 0 ||
         dia == 7 ||
-        qt_data10 > 0&& offatendimento()==true) {
+        qt_data10 > 0||offatendimento()==true) {
       return false;
     } else {
       return true;
@@ -781,7 +794,7 @@ class _PageAgendamentoState extends State<PageAgendamento> {
         dia == 6 ||
         teste == 0 ||
         dia == 7 ||
-        qt_data11 > 0&& offatendimento()==true) {
+        qt_data11 > 0||offatendimento()==true) {
       return false;
     } else {
       return true;
@@ -790,20 +803,14 @@ class _PageAgendamentoState extends State<PageAgendamento> {
 
 //15:30HM - 16:00H
   bool data15disponivel() {
-    if (qt_data15 > 0 || dia == 5 || dia == 6 || teste == 0 || dia == 7&& offatendimento()==true) {
+    if (qt_data15 > 0 || dia == 5 || dia == 6 || teste == 0 || dia == 7||offatendimento()==true) {
       return false;
     } else {
       return true;
     }
   }
   //Dia off
-   bool offatendimento(){
-    if(controllerDATA.text=='1-10-2022'||controllerDATA.text=='3-10-2022'){
-      return true;
-    }else{
-      return false;
-    }
-  }
+
 
   Future createUser({
     required String nome,
